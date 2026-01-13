@@ -3,10 +3,10 @@ from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain.agents import create_agent
 from tools import get_releases, get_commits, get_user_repos, get_repo_tags, get_repo_contributors, export_changelog
-from langchain.messages import HumanMessage
+from langchain.messages import HumanMessage, AIMessage
 from rich.console import Console
 from rich.markdown import Markdown
-from observability import initialize_netra, initialize_netra_session
+from observability import initialize_netra, initialize_netra_session, record_agent_thought_process
 
 load_dotenv()
 initialize_netra()
@@ -70,6 +70,9 @@ def main():
         response = simple_agent.invoke({
             "messages": messages,
         })
+
+        record_agent_thought_process(response["messages"], model="openai/gpt-oss-120b")
+
         messages.append(response["messages"][-1])
         pretty_print(response["messages"][-1].content)
 
