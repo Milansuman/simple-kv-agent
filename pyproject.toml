@@ -1,0 +1,18 @@
+[project]
+name = "netrach"
+version = "0.1.0"
+authors = [
+  { name="Milan Suman" },
+]
+description = "AI agent for generating changelogs from GitHub repositories"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/Milansuman/simple-kv-agent"
+Issues = "https://github.com/Milansuman/simple-kv-agent/issues"
