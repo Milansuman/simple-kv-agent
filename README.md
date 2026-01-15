@@ -1,4 +1,4 @@
-# simple-kv-agent
+# netrach
 
 ## Install with pip
 
