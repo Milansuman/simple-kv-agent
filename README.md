@@ -6,6 +6,17 @@
 pip install git+https://github.com/Milansuman/netrach-agent.git
 ```
 
+## Usage setup
+
+Ensure the following environment variables are set:
+```env
+GROQ_API_KEY=
+GITHUB_TOKEN=
+NETRA_API_KEY=
+NETRA_OTLP_ENDPOINT=
+```
+then run `netrach` to use the utility.
+
 ## Setup Instructions
 
 Clone the repo and create a python venv
