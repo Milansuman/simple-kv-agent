@@ -13,7 +13,8 @@ dependencies = [
   "langchain==1.2.3",
   "langchain-groq==1.1.1",
   "langchain-ollama==1.0.1",
-  "netra-sdk==0.1.60"
+  "netra-sdk==0.1.60",
+  "rich==14.2.0"
 ]
 license = {text = "MIT"}
 authors = [{name = "Milansuman", email = "milansuman2016@gmail.com"}]
