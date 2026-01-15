@@ -1,5 +1,11 @@
 # simple-kv-agent
 
+## Install with pip
+
+```bash
+pip install git+https://github.com/Milansuman/netrach-agent.git
+```
+
 ## Setup Instructions
 
 Clone the repo and create a python venv
