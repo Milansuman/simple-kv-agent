@@ -1,0 +1,64 @@
+name: Add Changelog to Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.2.3)'
+        required: true
+
+jobs:
+  add-changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for changelog generation
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install AutoChangeLog
+        run: pip install git+https://github.com/Milansuman/autochangelog.git
+
+      - name: Generate Changelog
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Determine release version
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${{ github.event.release.tag_name }}"
+          fi
+          
+          # Generate changelog to file
+          autochangelog --auto -r "$VERSION" --repo ${{ github.repository }} -f CHANGELOG.md
+
+      - name: Add Changelog to Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Determine release version
+          if [ -n "${{ github.event.inputs.version }}" ]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${{ github.event.release.tag_name }}"
+          fi
+          
+          # Read the generated changelog
+          CHANGELOG_CONTENT=$(cat CHANGELOG.md)
+          
+          # Get the current release body
+          RELEASE_ID=$(gh api repos/${{ github.repository }}/releases/tags/"$VERSION" --jq '.id')
+          
+          # Update the release
+          gh api repos/${{ github.repository }}/releases/"$RELEASE_ID" \
+            -X PATCH \
+            -f body="$CHANGELOG_CONTENT"
