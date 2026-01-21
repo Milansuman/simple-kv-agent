@@ -1,12 +1,12 @@
 import requests
 import os
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from langchain_core.tools import tool
 # from netra.decorators import task
 # from netra import Netra, ActionModel
 from autochangelog import git
 
-# load_dotenv()
+load_dotenv()
 
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 

@@ -1,6 +1,6 @@
 import os
 import argparse
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 from langchain_litellm import ChatLiteLLM
 from langchain.agents import create_agent
 from .tools import *
@@ -10,7 +10,7 @@ from rich.markdown import Markdown
 # from .observability import initialize_netra, initialize_netra_session, record_agent_thought_process
 from .git import get_current_repo
 
-# load_dotenv()
+load_dotenv()
 
 LITELLM_API_KEY = os.getenv("LITELLM_API_KEY")
 

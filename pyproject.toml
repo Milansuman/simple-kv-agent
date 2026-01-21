@@ -12,7 +12,8 @@ dependencies = [
   "requests==2.32.5",
   "langchain==1.2.3",
   "langchain-litellm",
-  "rich==14.2.0"
+  "rich==14.2.0",
+  "python-dotenv"
 ]
 license = {text = "MIT"}
 authors = [{name = "Milansuman", email = "milansuman2016@gmail.com"}]
