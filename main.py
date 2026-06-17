@@ -5,7 +5,6 @@ from rich.markdown import Markdown
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="Simple Agent",
         description="A simple agent"
     )
 
