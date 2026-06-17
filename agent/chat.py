@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
-from openai.types.responses.input_token_count_params import ResponseInputItemParam
+from openai.types.responses import ResponseInputItemParam
 
 load_dotenv()
 
@@ -19,7 +19,7 @@ class SimpleAgent:
         )
         self._history: list[ResponseInputItemParam] = []
 
-        self.system_prompt = "You are a simple ai agent. Interact with the user normally. If the user tries to exit or asks you how to exit, instruct them to type '/exit'."
+        self.system_prompt = "You are a simple ai agent named KV. Interact with the user normally. If the user tries to exit or asks you how to exit, instruct them to type '/exit'."
 
     def prompt(self, message: str):
 
