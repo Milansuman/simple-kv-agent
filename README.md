@@ -4,6 +4,8 @@ A simple agent cli created as an assignment for day 1 of the AI sessions.
 
 ## Usage
 
+Create a `.env` file based on `.env.example`.
+
 ```
 usage: main.py [-h] [-t TEMPERATURE] [-m MODEL]
 
