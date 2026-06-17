@@ -40,4 +40,8 @@ class SimpleAgent:
             "content": response.output_text,
         })
 
-        return response.output_text
+        return {
+            "content": response.output_text,
+            "input_tokens": response.usage.input_tokens if response.usage else 0,
+            "output_tokens": response.usage.output_tokens if response.usage else 0
+        }

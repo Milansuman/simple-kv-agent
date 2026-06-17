@@ -20,13 +20,18 @@ def main():
 
     console = Console()
 
-    while True:
-        prompt = input("> ")
-        if prompt == "/exit":
-            break
+    try:
+        while True:
+            prompt = input("\n> ")
+            if prompt == "/exit":
+                break
 
-        response = agent.prompt(prompt)
-        console.print(Markdown(response))
+            response = agent.prompt(prompt)
+            console.print(Markdown(response["content"]))
+            console.print(Markdown(f"**{response["input_tokens"]} IN** | **{response["output_tokens"]} OUT**"))
+
+    except KeyboardInterrupt:
+        pass
 
 if __name__ == "__main__":
     main()
